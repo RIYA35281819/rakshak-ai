@@ -1,2 +1,2 @@
-# rakhsak-AI
+# rakhsak-ai
 HEALTH WEBSITE
