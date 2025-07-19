@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rakshak AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Rakshak AI</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Tools</a>
+      <a href="#">Symptoms</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Symptom Checker</h2>
+      <form id="symptomForm">
+        <input type="text" id="symptom" placeholder="Enter your symptom" required />
+        <button type="submit">Check</button>
+      </form>
+      <div id="result"></div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('symptomForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const symptom = document.getElementById('symptom').value;
+      const res = await fetch('https://your-backend-url/api/symptoms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symptom })
+      });
+      const data = await res.json();
+      document.getElementById('result').innerText = 'Possible Conditions: ' + data.possible_conditions.join(', ');
+    });
+  </script>
+</body>
+</html>
